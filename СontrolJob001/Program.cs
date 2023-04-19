@@ -33,6 +33,8 @@ void FillArrayAndMoveToNewArray(int size)
       ii++;
     }
   }
+  Console.WriteLine($"ПервыйМассив: [{string.Join(", ", arrayFirst)}]");
+  Console.WriteLine($"ВторойМассив: [{string.Join(", ", arraySecond)}]");
 }
 
 Console.Clear(); Console.Write("Please enter the size of the array: ");
