@@ -20,26 +20,36 @@ int IsNumbers(string n)
   return volume;
 }
 
-void FillArrayAndMoveToNewArray(int size)
+int FillFirstArray(string[] arrayFirst)
 {
-  int ii = 0;
-  string[] arrayFirst = new string[size];
-  string[] arraySecond = new string[arrayFirst.Length / 2 + (arrayFirst.Length % 2)];
+  int count=0;
   for (int i = 0; i < arrayFirst.Length; i++)
-  {
+  {   
     Console.Write($"Введите любое значение для индекса {i} из {arrayFirst.Length-1}: ");
     arrayFirst[i] = Console.ReadLine();
-    if(i % 2 == 0)
+    if(arrayFirst[i].Length <= 3)
+      count++;
+  }
+  return count;
+}
+
+void FillArraySecond(string[] arrayFirst, string[] arraySecond)
+{
+  int ii = 0;
+  for (int i = 0; i < arrayFirst.Length; i++)
+  {
+    if(arrayFirst[i].Length <= 3)
     {
       arraySecond[ii] = arrayFirst[i];
       ii++;
     }
   }
-  Console.WriteLine($"ПервыйМассив: [{string.Join(", ", arrayFirst)}]");
-  Console.WriteLine($"ВторойМассив: [{string.Join(", ", arraySecond)}]");
 }
 
-Console.Clear(); Console.Write("Please enter the size of the array: ");
-int sizeArray = IsNumbers(Console.ReadLine());
-FillArrayAndMoveToNewArray(sizeArray);
+Console.Clear(); Console.Write("Пожалуйста, введите размер массива: ");
+string[] arrayFirst = new string[IsNumbers(Console.ReadLine())];
+string[] arraySecond = new string[FillFirstArray(arrayFirst)];
+FillArraySecond(arrayFirst, arraySecond);
+Console.WriteLine($"Первый Массив: [{string.Join(", ", arrayFirst)}]");
+Console.WriteLine($"Второй Массив: [{string.Join(", ", arraySecond)}]");
 Console.WriteLine($"Благодарю, что сегодня {DateTime.Now} Вы воспользовались моей программой.");
