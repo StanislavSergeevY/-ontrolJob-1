@@ -12,7 +12,7 @@
 int IsNumbers(string n)
 {
   bool numbers = int.TryParse(n, out int volume);
-  while(numbers == false)
+  while (numbers == false)
   {
     Console.Write("Вы ввели не число, повторите попытку: ");
     numbers = int.TryParse(Console.ReadLine(), out volume);
@@ -20,14 +20,14 @@ int IsNumbers(string n)
   return volume;
 }
 
-int FillFirstArray(string[] arrayFirst)
+int FillArrayFirst(string[] arrayFirst)
 {
-  int count=0;
+  int count = 0;
   for (int i = 0; i < arrayFirst.Length; i++)
-  {   
-    Console.Write($"Введите любое значение для индекса {i} из {arrayFirst.Length-1}: ");
+  {
+    Console.Write($"Введите любое значение для индекса {i} из {arrayFirst.Length - 1}: ");
     arrayFirst[i] = Console.ReadLine();
-    if(arrayFirst[i].Length <= 3)
+    if (arrayFirst[i].Length <= 3)
       count++;
   }
   return count;
@@ -38,7 +38,7 @@ void FillArraySecond(string[] arrayFirst, string[] arraySecond)
   int ii = 0;
   for (int i = 0; i < arrayFirst.Length; i++)
   {
-    if(arrayFirst[i].Length <= 3)
+    if (arrayFirst[i].Length <= 3)
     {
       arraySecond[ii] = arrayFirst[i];
       ii++;
@@ -48,7 +48,7 @@ void FillArraySecond(string[] arrayFirst, string[] arraySecond)
 
 Console.Clear(); Console.Write("Пожалуйста, введите размер массива: ");
 string[] arrayFirst = new string[IsNumbers(Console.ReadLine())];
-string[] arraySecond = new string[FillFirstArray(arrayFirst)];
+string[] arraySecond = new string[FillArrayFirst(arrayFirst)];
 FillArraySecond(arrayFirst, arraySecond);
 Console.WriteLine($"Первый Массив: [{string.Join(", ", arrayFirst)}]");
 Console.WriteLine($"Второй Массив: [{string.Join(", ", arraySecond)}]");
